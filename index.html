@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Registration Form</title>
+    <style>
+        body{
+            background-color: rgb(21, 20, 20);
+        }
+        form{
+            border: 2px solid black;
+            width: 550px;
+            /* height: 400px;  */
+            padding: 23px;
+            background-color: rgb(126, 121, 121);
+            color: white;
+        }
+        #emphead{
+            margin-left: 100px;
+        }
+        input {
+        width: 80%;            
+        padding: 10px;         
+        border: 2px solid #333; 
+        border-radius: 5px;    
+        font-size: 16px; 
+        }
+        input:hover {
+        border-color: blue;
+        border-width: 2px;
+        }
+        .formcont{
+            padding-left: 30%;
+            margin-left: -20%;
+        }
+        span{
+            padding-left: 10%;
+        }
+        span input{
+            border-radius: 40%;
+            
+        }
+        #first-section{
+            position:absolute;
+            display: inline;
+        }
+        #sec-section{
+            position: absolute;
+            display: inline;
+            margin-left: 45%;
+            border: 2px solid black;
+            padding: 3%;
+            background-color: rgb(126, 121, 121);
+        }
+        #sec-section h2{
+            margin-left: 150px;
+            color: white;
+        }
+        #heading{
+            /* padding: 1000px; */
+            background-color: black;
+        }
+        tr th{
+            padding: 12px;
+            border-spacing: 2px;
+            border: 2px solid black;
+            text-align: left;
+            color: white;
+        }
+        tr #id1{
+            padding: 12px;
+            border-spacing: 2px;
+            border: 2px solid black;
+            text-align: left;
+        }
+        #emptable{
+            border: 12px solid black;
+        }
+        #tablebody #id1{
+            padding: 12px;
+            border-spacing: 4px;
+            border: 2px solid black;
+            text-align: left;
+            background-color: rgb(147, 242, 125);
+            color: rgb(15, 1, 1);
+        }
+        #submit{
+            background-color: rgb(234, 185, 121);
+            width: 150px;
+            height: 40px;
+            border-radius: 50%;
+            margin-left: 15%;
+            border-color: rgb(227, 26, 26);
+        }
+        #submit:hover{
+            background-color: rgb(232, 202, 157);
+        }
+        #hr1{
+            border: 1px solid black;
+        }
+        #hr2{
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div id="first-section">
+    <form action="" id="empform">
+        <h2 id="emphead">Employee Information Form</h2>
+        <hr id="hr1">
+        <br>
+        <div class="formcont">
+            <label for="">Name : </label>
+            <br>
+            <input type="text" placeholder="Enter Employee Name" id="name" >
+            <br><br>
+            <label for="">Id : </label>
+            <br>
+            <input type="text" placeholder="Enter Employee Id" id="id" >
+            <br><br>
+            <label for="">Address : </label>
+            <br>
+            <input type="text" placeholder="Enter Employee Address" id="address">
+            <br><br>
+            <label for="">Phone no: </label>
+            <br>
+            <input type="number" placeholder="Enter Employee Phone no" id="phone">
+            <br><br>
+            <label for="">Email : </label>
+            <br>
+            <input type="email" placeholder="Enter Employee Email" id="email">
+            <br><br>
+            <label for="">Designation : </label>
+            <br>
+            <input type="text" placeholder="Enter Employee Designation" id="designation">
+            <br><br><br>
+            <span><input type="submit" id="submit"></span>
+            </div>
+    </form> 
+</div>
+
+<div id="sec-section">
+    <h2>Employee Table</h2>
+    <hr id="hr2">
+    <table id="emptable">
+        <thead>
+            <tr id="heading">
+                <th>Name</th>
+                <th>Id</th>
+                <th>Address</th>
+                <th>Phone-no</th>
+                <th>Email</th>
+                <th>Designation</th>
+            </tr>
+        </thead>
+        <tbody id="tablebody">
+            <!-- appending details -->
+        </tbody>
+
+    </table>
+</div>
+    
+</body>
+<script>
+    const evntlis = document.getElementById('empform')
+    evntlis.addEventListener('submit',function(event){
+        event.preventDefault(); 
+
+        //get form values
+        const name = document.getElementById('name').value;
+        const id = document.getElementById('id').value;
+        const address = document.getElementById('address').value;
+        const phone = document.getElementById('phone').value;
+        const email = document.getElementById('email').value;
+        const designation = document.getElementById('designation').value;
+
+        // get table body
+        const tbody=document.getElementById('tablebody')
+
+        //create table newRow
+        const newRow=document.createElement('tr')
+        newRow.id='id1'
+
+        //create general function to add value in each section
+        function createTd(value){
+            const td1=document.createElement('td');
+            //apending value into td1
+            td1.textContent=value;
+            //appending td1 into newRow
+            newRow.appendChild(td1);
+
+        }
+
+        createTd(name);
+        createTd(id);
+        createTd(address);
+        createTd(phone);
+        createTd(email);
+        createTd(designation);
+
+
+        //appending newRow to tablebody
+        tbody.appendChild(newRow);
+
+        // Clear the form fields after submission
+        document.getElementById('empform').reset();
+
+    })
+
+
+</script>
+</html>
